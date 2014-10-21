@@ -17,12 +17,12 @@ and
 ```
 <dependency>
     <groupId>com.guestful.module</groupId>
-    <artifactId>guestful.module.module.i18n</artifactId>
+    <artifactId>guestful.module.i18n</artifactId>
     <version>?</version>
 </dependency>
 ```
 
-Checkout last version [here](https://bintray.com/guestful/maven/guestful.module.module.i18n/view)
+Checkout last version [here](https://bintray.com/guestful/maven/guestful.module.i18n/view)
 
-[![Build Status](https://drone.io/github.com/guestful/module.module.i18n/status.png)](https://drone.io/github.com/guestful/module.module.i18n/latest)
+[![Build Status](https://drone.io/github.com/guestful/module.i18n/status.png)](https://drone.io/github.com/guestful/module.i18n/latest)
 

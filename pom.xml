@@ -27,7 +27,7 @@
     </parent>
 
     <groupId>com.guestful.module</groupId>
-    <artifactId>guestful.module.module.i18n</artifactId>
+    <artifactId>guestful.module.i18n</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Guestful :: Module :: Guestful I18N data based on Unicode CLDR</name>
@@ -35,7 +35,7 @@
     <url>https://github.com/guestful/${github.name}</url>
 
     <properties>
-        <github.name>module.module.i18n</github.name>
+        <github.name>module.i18n</github.name>
     </properties>
 
     <scm>
