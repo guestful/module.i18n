@@ -64,9 +64,11 @@ public class I18nTest {
 
         assertEquals("+1 5146604287", Internationalization.parsePhoneNumber("+1 514 660 4287", "FR").toString());
         assertEquals("+15146604287", Internationalization.parsePhoneNumber("+1 514 660 4287", "FR").format());
+        assertEquals("+15146604287", Internationalization.parsePhoneNumber("+1 514+660+4287", "FR").format());
 
         assertEquals("+1 5146604287", Internationalization.parsePhoneNumber("+999 514 660 4287", "CA").toString());
         assertEquals("+15146604287", Internationalization.parsePhoneNumber("+999 514 660 4287", "CA").format());
+        assertEquals("+15146604287", Internationalization.parsePhoneNumber("+999+514+660+4287", "CA").format());
 
         assertEquals("+33 05146604287", Internationalization.parsePhoneNumber("099 514 660 4287", "FR").toString());
         assertEquals("+335146604287", Internationalization.parsePhoneNumber("099 514 660 4287", "FR").format());

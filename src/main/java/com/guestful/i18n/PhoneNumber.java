@@ -80,7 +80,9 @@ public class PhoneNumber {
     }
 
     public static String normalize(String s) {
-        return s.toLowerCase().replaceAll("[^x\\d\\+]", "");
+        String phone = s.toLowerCase().replaceAll("[^x\\d\\+]", "");
+        String phone2 = phone.replace("+", "");
+        return phone.startsWith("+") ? ("+" + phone2) : phone2;
     }
 
     public static boolean isNormalized(String s) {
