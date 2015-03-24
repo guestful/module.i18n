@@ -19,8 +19,6 @@ import javax.json.*;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -34,46 +32,6 @@ public class Internationalization {
     public static final List<String> SUPPORTED_LANGS = Collections.unmodifiableList(Arrays.asList(Locale.getISOLanguages()));
 
     private static final Map<String, Country> COUNTRIES = load();
-
-    private static final Map<String, DateTimeFormatter> TIME_PATTERNS = map(
-        "en", DateTimeFormatter.ofPattern("h:mm a"),
-        "fr", DateTimeFormatter.ofPattern("HH:mm"),
-        "de", DateTimeFormatter.ofPattern("HH:mm 'Uhr'"),
-        "it", DateTimeFormatter.ofPattern("HH:mm"),
-        "el", DateTimeFormatter.ofPattern("h:mm a"),
-        "pt_BR", DateTimeFormatter.ofPattern("HH:mm"),
-        "ru", DateTimeFormatter.ofPattern("HH:mm")
-    );
-
-    private static final Map<String, DateTimeFormatter> SHORT_DATE_PATTERNS = map(
-        "en", DateTimeFormatter.ofPattern("MM/dd/yyyy"),
-        "fr", DateTimeFormatter.ofPattern("dd/MM/yyyy"),
-        "de", DateTimeFormatter.ofPattern("dd.MM.yyyy"),
-        "it", DateTimeFormatter.ofPattern("dd/MM/yyyy"),
-        "el", DateTimeFormatter.ofPattern("dd/MM/yyyy"),
-        "pt_BR", DateTimeFormatter.ofPattern("dd/MM/yyyy"),
-        "ru", DateTimeFormatter.ofPattern("dd/MM/yyyy")
-    );
-
-    private static final Map<String, DateTimeFormatter> FULL_DATE_PATTERNS = map(
-        "en", DateTimeFormatter.ofPattern("EEEE, MMMM dd, h:mm a"),
-        "fr", DateTimeFormatter.ofPattern("EEEE dd MMMM HH:mm"),
-        "de", DateTimeFormatter.ofPattern("EEEE, dd. MMMM HH:mm"),
-        "it", DateTimeFormatter.ofPattern("EEEE, dd MMMM HH:mm"),
-        "el", DateTimeFormatter.ofPattern("EEEE. dd MMMM h:mm a"),
-        "pt_BR", DateTimeFormatter.ofPattern("EEEE, dd 'de' MMMM 'às' HH:mm"),
-        "ru", DateTimeFormatter.ofPattern("EEEE dd MMMM HH:mm")
-    );
-
-    private static final Map<String, DateTimeFormatter> SMS_DATE_PATTERNS = map(
-        "en", DateTimeFormatter.ofPattern("MMM dd, h:mm a"),
-        "fr", DateTimeFormatter.ofPattern("d MMM HH:mm"),
-        "de", DateTimeFormatter.ofPattern("d. MMM HH:mm"),
-        "it", DateTimeFormatter.ofPattern("d MMM HH:mm"),
-        "el", DateTimeFormatter.ofPattern("d MMM h:mm a"),
-        "pt_BR", DateTimeFormatter.ofPattern("d 'de' MMM 'às' HH:mm"),
-        "ru", DateTimeFormatter.ofPattern("d MMM HH:mm")
-    );
 
     public static Collection<String> getTimeZones() {
         return ZoneId.getAvailableZoneIds();
@@ -156,22 +114,6 @@ public class Internationalization {
 
     public static boolean isPostalCodeValid(String countryCode, String postalCode) {
         return postalCode != null && getPostalCodePattern(countryCode).matcher(postalCode).matches();
-    }
-
-    public static String formatTime(ZonedDateTime dt, Locale locale) {
-        return format(dt, locale, TIME_PATTERNS);
-    }
-
-    public static String formatLongDate(ZonedDateTime dt, Locale locale) {
-        return format(dt, locale, FULL_DATE_PATTERNS);
-    }
-
-    public static String formatShortDate(ZonedDateTime dt, Locale locale) {
-        return format(dt, locale, SHORT_DATE_PATTERNS);
-    }
-
-    public static String formatSmsDate(ZonedDateTime dt, Locale locale) {
-        return format(dt, locale, SMS_DATE_PATTERNS);
     }
 
     public static String getMessage(Map<String, ?> bundle, Locale locale, Locale defaultLocale) {
@@ -301,15 +243,6 @@ public class Internationalization {
             prev = (2 + i) % 3;
         }
         return list;
-    }
-
-    private static String format(ZonedDateTime dt, Locale locale, Map<String, DateTimeFormatter> patterns) {
-        if (dt == null) return null;
-        String lng = (locale == null ? "en" : locale.getLanguage()).toLowerCase();
-        if (!patterns.containsKey(lng)) {
-            lng = "en";
-        }
-        return dt.format(patterns.get(lng).withLocale(locale));
     }
 
     static Map<String, Country> load() {
