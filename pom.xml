@@ -28,7 +28,7 @@
 
     <groupId>com.guestful.module</groupId>
     <artifactId>guestful.module.i18n</artifactId>
-    <version>1.2</version>
+    <version>1.3-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Guestful :: Module :: Guestful I18N data based on Unicode CLDR</name>
     <inceptionYear>2013</inceptionYear>
@@ -42,7 +42,7 @@
         <connection>scm:git:git@github.com:guestful/${github.name}.git</connection>
         <developerConnection>scm:git:git@github.com:guestful/${github.name}.git</developerConnection>
         <url>https://github.com/guestful/${github.name}</url>
-        <tag>guestful.module.i18n-1.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <repositories>
